@@ -22,12 +22,16 @@ const persons = [
     },
     {
         name: 'Владислав Горлов',
-        age: 40,
+        age: 35,
         group: 'JavaScript-разработчик',
+    },
+    {
+        name: 'Марк Кузнецов',
+        age: 40,
+        role: 'Администратор',
     },
 ];
 const logPerson = (user) => {
     console.log(`${user.name}, ${user.age}`);
 };
-console.log('Users:');
 persons.forEach(logPerson);
