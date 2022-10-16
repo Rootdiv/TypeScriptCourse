@@ -1,4 +1,22 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const carResult_1 = require("./carResult");
-console.log('carResult: ', carResult_1.carResult);
+const div = (a, b, rounding) => {
+    const res = a / b;
+    if (rounding) {
+        return Math.round(res);
+    }
+    return res;
+};
+div(15, 4, true);
+div(15, 3);
+div(10, 2);
+const fetchData = (res) => {
+    if (res.status === 'pending') {
+        res.status;
+    }
+    if (res.status === 'success') {
+        res.data;
+    }
+    if (res.status === 'failed') {
+        res.error;
+    }
+};
