@@ -5,3 +5,4 @@
 - Основы TypeScript
 - Основные типы JS в TS
 - Типы TS: union, alias, literal, enum и contract
+- Приведение типов, Type Guards и interface
