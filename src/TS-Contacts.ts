@@ -73,3 +73,13 @@ persons.filter(isAdmin).forEach(logPerson);
 
 console.log('Users:');
 persons.filter(isUser).forEach(logPerson);
+
+const filterUsers = (persons: Person[], criteria: Partial<User>): User[] =>
+  persons.filter(isUser).filter(user => {
+    const criteriaKeys = Object.keys(criteria) as (keyof User)[];
+    return criteriaKeys.every(fieldName => user[fieldName] === criteria[fieldName]);
+  });
+
+console.log('Users of age 25:');
+
+filterUsers(persons, { age: 25 }).forEach(logPerson);

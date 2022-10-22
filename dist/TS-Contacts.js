@@ -51,6 +51,11 @@ const logPerson = (person) => {
 };
 console.log('Admins:');
 persons.filter(isAdmin).forEach(logPerson);
-console.log();
 console.log('Users:');
 persons.filter(isUser).forEach(logPerson);
+const filterUsers = (persons, criteria) => persons.filter(isUser).filter(user => {
+    const criteriaKeys = Object.keys(criteria);
+    return criteriaKeys.every(fieldName => user[fieldName] === criteria[fieldName]);
+});
+console.log('Users of age 25:');
+filterUsers(persons, { age: 25 }).forEach(logPerson);
