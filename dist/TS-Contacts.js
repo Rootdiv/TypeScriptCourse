@@ -36,6 +36,12 @@ const persons = [
         age: 40,
         role: 'Администратор',
     },
+    {
+        type: 'admin',
+        name: 'Тихон Митрофанов',
+        age: 35,
+        role: 'Модератор',
+    },
 ];
 const isAdmin = (person) => person.type === 'admin';
 const isUser = (person) => person.type === 'user';
@@ -53,9 +59,9 @@ console.log('Admins:');
 persons.filter(isAdmin).forEach(logPerson);
 console.log('Users:');
 persons.filter(isUser).forEach(logPerson);
-const filterUsers = (persons, criteria) => persons.filter(isUser).filter(user => {
+const filterUsers = (persons, criteria) => persons.filter(user => {
     const criteriaKeys = Object.keys(criteria);
     return criteriaKeys.every(fieldName => user[fieldName] === criteria[fieldName]);
 });
-console.log('Users of age 25:');
-filterUsers(persons, { age: 25 }).forEach(logPerson);
+console.log('Persons of age 35:');
+filterUsers(persons, { age: 35 }).forEach(logPerson);

@@ -51,6 +51,12 @@ const persons: Person[] = [
     age: 40,
     role: 'Администратор',
   },
+  {
+    type: 'admin',
+    name: 'Тихон Митрофанов',
+    age: 35,
+    role: 'Модератор',
+  },
 ];
 
 const isAdmin = (person: Person): person is Admin => person.type === 'admin';
@@ -74,12 +80,12 @@ persons.filter(isAdmin).forEach(logPerson);
 console.log('Users:');
 persons.filter(isUser).forEach(logPerson);
 
-const filterUsers = (persons: Person[], criteria: Partial<User>): User[] =>
-  persons.filter(isUser).filter(user => {
-    const criteriaKeys = Object.keys(criteria) as (keyof User)[];
+const filterUsers = (persons: Person[], criteria: Partial<Person>): Person[] =>
+  persons.filter(user => {
+    const criteriaKeys = Object.keys(criteria) as (keyof Person)[];
     return criteriaKeys.every(fieldName => user[fieldName] === criteria[fieldName]);
   });
 
-console.log('Users of age 25:');
+console.log('Persons of age 35:');
 
-filterUsers(persons, { age: 25 }).forEach(logPerson);
+filterUsers(persons, { age: 35 }).forEach(logPerson);
