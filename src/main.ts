@@ -1,116 +1,76 @@
-class HttpResponse<D, E> {
-  protected _success: boolean;
-  protected _data?: D;
-  protected _code?: E;
+import { Students } from './Students';
+import { Employees } from './Employees';
 
-  constructor(success: boolean, data?: D, error?: E) {
-    this._success = success;
-    if (data) {
-      this._data = data;
-    }
-    if (error) {
-      this._code = error;
-    }
-  }
-}
+const students = new Students();
+const employees = new Employees();
 
-const responseToken = new HttpResponse<number, string>(true, 456465565456);
-const responseUser = new HttpResponse<string, string>(true, 'Генадий Иванов');
+students.add({
+  id: 1,
+  firstname: 'Тимофей',
+  surname: 'Панов',
+  age: 20,
+  year: 2,
+  specialty: 'Верстальщик',
+});
 
-// type filterArray = <T>(arr: T[], exclude: T[]) => T[];
-// const filterArr: filterArray = (arr, exclude) => arr.filter(item => !exclude.includes(item));
-// //const filterArr = <T>(arr: T[], exclude: T[]): T[] => arr.filter(item => !exclude.includes(item));
+students.add({
+  id: 2,
+  firstname: 'Александра',
+  surname: 'Куликова',
+  age: 22,
+  year: 1,
+  specialty: 'Дизайнер',
+});
 
-// const result = filterArr<number>([1, 2, 3, 4, 5], [2, 4]);
-// console.log('result: ', result);
+students.add({
+  id: 3,
+  firstname: 'Варвара',
+  surname: 'Васильева',
+  age: 25,
+  year: 3,
+  specialty: 'JavaScript разработчик',
+});
 
-// interface HttpResponseError {
-//   success: false;
-//   error: string;
-// }
+students.add({
+  id: 4,
+  firstname: 'Эмиль',
+  surname: 'Киселев',
+  age: 25,
+  year: 5,
+  specialty: 'Frontend разработчик',
+});
 
-// interface HttpResponseSuccess<T> {
-//   success: true;
-//   data: T;
-// }
+students.add({
+  id: 5,
+  firstname: 'Михаил',
+  surname: 'Захаров',
+  age: 27,
+  year: 4,
+  specialty: 'React разработчик',
+});
 
-// type HttpResponse<T> = HttpResponseError | HttpResponseSuccess<T>;
+employees.add({
+  id: 1,
+  firstname: 'Никита',
+  surname: 'Яковлев',
+  age: 30,
+  post: 'Куратор',
+});
 
-// interface product {
-//   id: number;
-//   title: string;
-//   count: number;
-// }
+employees.add({
+  id: 2,
+  firstname: 'Максим',
+  surname: 'Алексеев',
+  age: 35,
+  post: 'Преподаватель',
+});
 
-// interface person {
-//   name: string;
-//   post: string;
-// }
-
-// const response: HttpResponse<product[]> = {
-//   success: true,
-//   data: [
-//     {
-//       id: 21,
-//       title: 'Капуста',
-//       count: 30,
-//     },
-//     {
-//       id: 12,
-//       title: 'Морковь',
-//       count: 50,
-//     },
-//   ],
-// };
-
-// const response2: HttpResponse<person[]> = {
-//   success: true,
-//   data: [
-//     {
-//       name: 'Иван',
-//       post: 'Кладовщик',
-//     },
-//     {
-//       name: 'Пётр',
-//       post: 'Сторож',
-//     },
-//   ],
-// };
-
-// const response3: HttpResponse<string> = {
-//   success: true,
-//   data: 'Заказ оформлен, номер заказа №23123',
-// };
-
-// const log = <type>(val: type): type => {
-//   console.log(val);
-//   return val;
-// };
-
-// log<string>('строка');
-// log(5);
-
-// const logFoo = (val: string | number): string | number => {
-//   console.log(val);
-//   return val;
-// };
-
-// const c = logFoo(5);
-// const d = logFoo('строка');
-
-// const log = <T, B>(val: T, val2: B): T => {
-//   console.log(val);
-//   console.log(val2);
-//   return val;
-// };
-
-// log<string, number>('строка', 10);
-// log(5, 15);
-
-// function log2<T>(val: T): T {
-//   console.log(val);
-//   return val;
-// }
-
-// log2<string>('строка');
-// log2<boolean>(!5);
+console.log(students);
+console.log(employees);
+console.log('students.remove(4): ', students.remove(4));
+console.log('students.remove(6): ', students.remove(6));
+console.log(students);
+console.log('Студент 3: ', students.get(3));
+console.log('Студент 8: ', students.get(8));
+console.log('Сотрудник 2: ', employees.get(2));
+console.log('Сотрудник 5: ', employees.get(5));
