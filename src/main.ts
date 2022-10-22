@@ -1,71 +1,116 @@
-class Job {
-  private role: string;
-  private salary: number;
+class HttpResponse<D, E> {
+  protected _success: boolean;
+  protected _data?: D;
+  protected _code?: E;
 
-  constructor(role: string, salary: number) {
-    this.role = role;
-    this.salary = salary;
-  }
-
-  get salaryInfo(): number {
-    return this.salary;
-  }
-
-  public work(personName: string): void {
-    console.log(`${personName} сейчас работает как ${this.role}`);
+  constructor(success: boolean, data?: D, error?: E) {
+    this._success = success;
+    if (data) {
+      this._data = data;
+    }
+    if (error) {
+      this._code = error;
+    }
   }
 }
 
-class Person {
-  private job: Job;
-  private name: string;
+const responseToken = new HttpResponse<number, string>(true, 456465565456);
+const responseUser = new HttpResponse<string, string>(true, 'Генадий Иванов');
 
-  constructor(name: string, job: Job) {
-    this.name = name;
-    this.job = job;
-  }
+// type filterArray = <T>(arr: T[], exclude: T[]) => T[];
+// const filterArr: filterArray = (arr, exclude) => arr.filter(item => !exclude.includes(item));
+// //const filterArr = <T>(arr: T[], exclude: T[]): T[] => arr.filter(item => !exclude.includes(item));
 
-  set jobChange(newJob: Job) {
-    this.job = newJob;
-  }
+// const result = filterArr<number>([1, 2, 3, 4, 5], [2, 4]);
+// console.log('result: ', result);
 
-  getSalary(): number {
-    return this.job.salaryInfo;
-  }
+// interface HttpResponseError {
+//   success: false;
+//   error: string;
+// }
 
-  work(): void {
-    this.job.work(this.name);
-  }
-}
+// interface HttpResponseSuccess<T> {
+//   success: true;
+//   data: T;
+// }
 
-const mover = new Job('Грузчик', 100000);
-const driver = new Job('Водитель', 150000);
-const manager = new Job('Менеджер', 250000);
+// type HttpResponse<T> = HttpResponseError | HttpResponseSuccess<T>;
 
-const personMover: Person = new Person('Степан', mover);
-const personDriver: Person = new Person('Фёдор', driver);
-const personManager: Person = new Person('Серафим', manager);
+// interface product {
+//   id: number;
+//   title: string;
+//   count: number;
+// }
 
-console.log('personDriver: ', personMover);
-console.log('Зарплата: ', personMover.getSalary());
-console.log(personMover.work());
-console.log('personDriver: ', personDriver);
-console.log('Зарплата: ', personDriver.getSalary());
-console.log(personDriver.work());
-console.log('personDriver: ', personManager);
-console.log('Зарплата: ', personManager.getSalary());
-console.log(personManager.work());
+// interface person {
+//   name: string;
+//   post: string;
+// }
 
-personMover.jobChange = driver;
-personDriver.jobChange = mover;
-personManager.jobChange = new Job('Директор', 300000);
+// const response: HttpResponse<product[]> = {
+//   success: true,
+//   data: [
+//     {
+//       id: 21,
+//       title: 'Капуста',
+//       count: 30,
+//     },
+//     {
+//       id: 12,
+//       title: 'Морковь',
+//       count: 50,
+//     },
+//   ],
+// };
 
-console.log('personDriver: ', personMover);
-console.log('Новая зарплата: ', personMover.getSalary());
-console.log(personMover.work());
-console.log('personDriver: ', personDriver);
-console.log('Новая зарплата: ', personDriver.getSalary());
-console.log(personDriver.work());
-console.log('personDriver: ', personManager);
-console.log('Новая зарплата: ', personManager.getSalary());
-console.log(personManager.work());
+// const response2: HttpResponse<person[]> = {
+//   success: true,
+//   data: [
+//     {
+//       name: 'Иван',
+//       post: 'Кладовщик',
+//     },
+//     {
+//       name: 'Пётр',
+//       post: 'Сторож',
+//     },
+//   ],
+// };
+
+// const response3: HttpResponse<string> = {
+//   success: true,
+//   data: 'Заказ оформлен, номер заказа №23123',
+// };
+
+// const log = <type>(val: type): type => {
+//   console.log(val);
+//   return val;
+// };
+
+// log<string>('строка');
+// log(5);
+
+// const logFoo = (val: string | number): string | number => {
+//   console.log(val);
+//   return val;
+// };
+
+// const c = logFoo(5);
+// const d = logFoo('строка');
+
+// const log = <T, B>(val: T, val2: B): T => {
+//   console.log(val);
+//   console.log(val2);
+//   return val;
+// };
+
+// log<string, number>('строка', 10);
+// log(5, 15);
+
+// function log2<T>(val: T): T {
+//   console.log(val);
+//   return val;
+// }
+
+// log2<string>('строка');
+// log2<boolean>(!5);

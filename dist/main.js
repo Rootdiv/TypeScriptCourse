@@ -1,55 +1,14 @@
 "use strict";
-class Job {
-    constructor(role, salary) {
-        this.role = role;
-        this.salary = salary;
-    }
-    get salaryInfo() {
-        return this.salary;
-    }
-    work(personName) {
-        console.log(`${personName} сейчас работает как ${this.role}`);
-    }
-}
-class Person {
-    constructor(name, job) {
-        this.name = name;
-        this.job = job;
-    }
-    set jobChange(newJob) {
-        this.job = newJob;
-    }
-    getSalary() {
-        return this.job.salaryInfo;
-    }
-    work() {
-        this.job.work(this.name);
+class HttpResponse {
+    constructor(success, data, error) {
+        this._success = success;
+        if (data) {
+            this._data = data;
+        }
+        if (error) {
+            this._code = error;
+        }
     }
 }
-const mover = new Job('Грузчик', 100000);
-const driver = new Job('Водитель', 150000);
-const manager = new Job('Менеджер', 250000);
-const personMover = new Person('Степан', mover);
-const personDriver = new Person('Фёдор', driver);
-const personManager = new Person('Серафим', manager);
-console.log('personDriver: ', personMover);
-console.log('Зарплата: ', personMover.getSalary());
-console.log(personMover.work());
-console.log('personDriver: ', personDriver);
-console.log('Зарплата: ', personDriver.getSalary());
-console.log(personDriver.work());
-console.log('personDriver: ', personManager);
-console.log('Зарплата: ', personManager.getSalary());
-console.log(personManager.work());
-personMover.jobChange = driver;
-personDriver.jobChange = mover;
-personManager.jobChange = new Job('Директор', 300000);
-console.log('personDriver: ', personMover);
-console.log('Новая зарплата: ', personMover.getSalary());
-console.log(personMover.work());
-console.log('personDriver: ', personDriver);
-console.log('Новая зарплата: ', personDriver.getSalary());
-console.log(personDriver.work());
-console.log('personDriver: ', personManager);
-console.log('Новая зарплата: ', personManager.getSalary());
-console.log(personManager.work());
+const responseToken = new HttpResponse(true, 456465565456);
+const responseUser = new HttpResponse(true, 'Генадий Иванов');
