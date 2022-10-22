@@ -1,40 +1,40 @@
 class Job {
-  private role: string;
-  private salary: number;
+  private _role: string;
+  private _salary: number;
 
   constructor(role: string, salary: number) {
-    this.role = role;
-    this.salary = salary;
+    this._role = role;
+    this._salary = salary;
   }
 
   get salaryInfo(): number {
-    return this.salary;
+    return this._salary;
   }
 
   public work(personName: string): void {
-    console.log(`${personName} сейчас работает как ${this.role}`);
+    console.log(`${personName} сейчас работает как ${this._role}`);
   }
 }
 
 class Person {
-  private job: Job;
-  private name: string;
+  private _job: Job;
+  private _name: string;
 
   constructor(name: string, job: Job) {
-    this.name = name;
-    this.job = job;
+    this._name = name;
+    this._job = job;
   }
 
   set jobChange(newJob: Job) {
-    this.job = newJob;
+    this._job = newJob;
   }
 
   getSalary(): number {
-    return this.job.salaryInfo;
+    return this._job.salaryInfo;
   }
 
   work(): void {
-    this.job.work(this.name);
+    this._job.work(this._name);
   }
 }
 

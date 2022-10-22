@@ -1,29 +1,29 @@
 "use strict";
 class Job {
     constructor(role, salary) {
-        this.role = role;
-        this.salary = salary;
+        this._role = role;
+        this._salary = salary;
     }
     get salaryInfo() {
-        return this.salary;
+        return this._salary;
     }
     work(personName) {
-        console.log(`${personName} сейчас работает как ${this.role}`);
+        console.log(`${personName} сейчас работает как ${this._role}`);
     }
 }
 class Person {
     constructor(name, job) {
-        this.name = name;
-        this.job = job;
+        this._name = name;
+        this._job = job;
     }
     set jobChange(newJob) {
-        this.job = newJob;
+        this._job = newJob;
     }
     getSalary() {
-        return this.job.salaryInfo;
+        return this._job.salaryInfo;
     }
     work() {
-        this.job.work(this.name);
+        this._job.work(this._name);
     }
 }
 const mover = new Job('Грузчик', 100000);
